@@ -1,20 +1,12 @@
-# data/base_conocimiento.py
-
-BASE_ALGAS_INICIAL = {
+{
     "Ulva lactuca": {
         "clase": "Chlorophyta",
         "familia": "Ulvaceae",
         "imagen": "ulva_lactuca.png",
         "caracteristicas": {
-            "talo": (
-                "Laminar, membranoso, verde brillante, "
-                "solitario o en mechones"
-            ),
+            "talo": "Laminar, membranoso, verde brillante, solitario o en mechones",
             "tamaño_cm": "10–25 (hasta 70) alto",
-            "estructura": (
-                "Dos capas celulares de grosor; células redondas "
-                "a poliédricas, 8–12 µm diám., 1 pirenoide"
-            ),
+            "estructura": "Dos capas celulares de grosor; células redondas a poliédricas, 8–12 µm diám., 1 pirenoide",
             "fijacion": "Disco de fijación pequeño e inconspicuo",
             "habitat": "Sustratos duros, intermareal hasta 10 m; aguas eutrofizadas",
             "clave_id": "Lámina ancha translúcida verde, dos capas celulares"
@@ -25,15 +17,9 @@ BASE_ALGAS_INICIAL = {
         "familia": "Ulvaceae",
         "imagen": "Ulva_instestinalis.png",
         "caracteristicas": {
-            "talo": (
-                "Tubular, hueco, flácido, verde amarillento, "
-                "mechones gregarios"
-            ),
+            "talo": "Tubular, hueco, flácido, verde amarillento, mechones gregarios",
             "tamaño_cm": "5–30 (hasta 100) largo, 0.3–1.0 cm ancho",
-            "estructura": (
-                "Paredes de una sola célula de grosor; células "
-                "no en filas longitudinales"
-            ),
+            "estructura": "Paredes de una sola célula de grosor; células no en filas longitudinales",
             "fijacion": "Rizoides finos que forman almohadilla discoidal densa",
             "habitat": "Raíces de mangle, madera, rocas, epífita; intermareal",
             "clave_id": "Tubos huecos contorsionados, una célula de grosor"
@@ -44,15 +30,9 @@ BASE_ALGAS_INICIAL = {
         "familia": "Ulvaceae",
         "imagen": "Ulva_flexuosa.png",
         "caracteristicas": {
-            "talo": (
-                "Tubular a aplanado en cintas, flácido, verde "
-                "claro, mechones"
-            ),
+            "talo": "Tubular a aplanado en cintas, flácido, verde claro, mechones",
             "tamaño_cm": "5–15 (hasta 25) largo, 1–5 mm diám.",
-            "estructura": (
-                "Una capa celular; células en filas longitudinales "
-                "y transversales"
-            ),
+            "estructura": "Una capa celular; células en filas longitudinales y transversales",
             "fijacion": "Rizoides formando almohadilla densamente entrelazada",
             "habitat": "Aguas salobres, manglares, epífita; intermareal superior a 5 m",
             "clave_id": "Tubos huecos estrechos o cintas aplanadas, una capa celular"
@@ -63,15 +43,9 @@ BASE_ALGAS_INICIAL = {
         "familia": "Cladophoraceae",
         "imagen": "Chaetomorpha_antennina.png",
         "caracteristicas": {
-            "talo": (
-                "Filamentos rígidos no ramificados, en parches densos, "
-                "verde amarillento a verde oscuro"
-            ),
+            "talo": "Filamentos rígidos no ramificados, en parches densos, verde amarillento a verde oscuro",
             "tamaño_cm": "7–10 (hasta 20) alto; células 450–550 µm diám.",
-            "estructura": (
-                "Células gigantes uniseriadas, visibles a simple vista; "
-                "célula basal muy larga con constricciones anulares"
-            ),
+            "estructura": "Células gigantes uniseriadas, visibles a simple vista; célula basal muy larga con constricciones anulares",
             "fijacion": "Fuerte disco con rizoides cortos ramificados, estriaciones",
             "habitat": "Rocas intermareal medio-superior, oleaje fuerte",
             "clave_id": "Filamentos rígidos no ramificados de células gigantes en forma de barril"
@@ -82,10 +56,7 @@ BASE_ALGAS_INICIAL = {
         "familia": "Cladophoraceae",
         "imagen": "Cladophora_albida.png",
         "caracteristicas": {
-            "talo": (
-                "Montículos hemisféricos esponjosos (expuesto) o filamentos "
-                "delicados ondulados (protegido), verde pálido a oscuro"
-            ),
+            "talo": "Montículos hemisféricos esponjosos (expuesto) o filamentos delicados ondulados (protegido), verde pálido a oscuro",
             "tamaño_cm": "1–3 (expuesto) a 15 (protegido) alto",
             "ramificacion": "Irregular a dicotómica abajo, unilateral arriba; máx. 1 rama por nudo",
             "celulas": "Cilíndricas, 40–80 µm diám., ápices falciformes, estrechándose a 12 µm",
@@ -113,10 +84,7 @@ BASE_ALGAS_INICIAL = {
         "familia": "Cladophoraceae",
         "imagen": "Cladophora_vagabunda.png",
         "caracteristicas": {
-            "talo": (
-                "Suave, esponjoso, pompón (expuesto) o mechones "
-                "largos (protegido), verde pálido a hierba"
-            ),
+            "talo": "Suave, esponjoso, pompón (expuesto) o mechones largos (protegido), verde pálido a hierba",
             "tamaño_cm": "Pompones 4 cm diám.; mechones 30 cm alto",
             "ramificacion": "Pseudodicotómica abajo, unilateral arriba; 1–4 ramas por nudo",
             "celulas": "Cilíndricas, 80–140 µm diám., ápices rectos arriba, falciformes abajo",
@@ -130,10 +98,7 @@ BASE_ALGAS_INICIAL = {
         "familia": "Caulerpaceae",
         "imagen": "Caulerpa_racemosa.png",
         "caracteristicas": {
-            "talo": (
-                "Erecto o rastrero, con ramillas en forma de uva, "
-                "verde uniforme o con punto central (ojo de gato)"
-            ),
+            "talo": "Erecto o rastrero, con ramillas en forma de uva, verde uniforme o con punto central (ojo de gato)",
             "tamaño_cm": "1–5 alto; ramillas 2–4 mm diám.",
             "estructura": "Cenocítico; estolones 2–3 mm diám., rizoides de eje grueso",
             "fijacion": "Rizoides robustos desde estolones",
@@ -173,10 +138,7 @@ BASE_ALGAS_INICIAL = {
         "familia": "Gracilariaceae",
         "imagen": "Gracilaria_cervicornis.png",
         "caracteristicas": {
-            "talo": (
-                "Resistente, resbaladizo, marrón rojizo a verde amarillento, "
-                "ramificación cervicorne distal"
-            ),
+            "talo": "Resistente, resbaladizo, marrón rojizo a verde amarillento, ramificación cervicorne distal",
             "tamaño_cm": "Hasta 20 (40) alto; ramas parcialmente aplanadas 1–5 mm ancho",
             "estructura": "Médula de células gruesas 175–300 µm; corteza 3–7 capas",
             "fijacion": "Disco de fijación inconspicuo",
@@ -202,10 +164,7 @@ BASE_ALGAS_INICIAL = {
         "familia": "Gracilariaceae",
         "imagen": "Gracilaria_cornea.png",
         "caracteristicas": {
-            "talo": (
-                "Arbustivo, cartilaginoso muy firme, pardo rojizo "
-                "a purpúreo, ramificación irregular"
-            ),
+            "talo": "Arbustivo, cartilaginoso muy firme, pardo rojizo a purpúreo, ramificación irregular",
             "ramas": "Exclusivamente cilíndricas, puntas agudas",
             "estructura": "Pseudoparenquimatoso; médula incolora grande, corteza pequeña pigmentada",
             "fijacion": "Disco de fijación discoidal; frecuente en arribazón",
@@ -218,15 +177,9 @@ BASE_ALGAS_INICIAL = {
         "familia": "Hypneaceae",
         "imagen": "Hypnea_musciformis.png",
         "caracteristicas": {
-            "talo": (
-                "Alambreado, enredado, cilíndrico, rojo anaranjado a "
-                "violáceo (verdoso con luz intensa)"
-            ),
+            "talo": "Alambreado, enredado, cilíndrico, rojo anaranjado a violáceo (verdoso con luz intensa)",
             "tamaño_cm": "Hasta 20 (50) largo; ramas 0.5–2.0 mm diám.",
-            "ramificacion": (
-                "Irregular; ramillas laterales cortas en forma de espolón; "
-                "ápices principales transformados en zarcillos anchos aplanados"
-            ),
+            "ramificacion": "Irregular; ramillas laterales cortas en forma de espolón; ápices principales transformados en zarcillos anchos aplanados",
             "fijacion": "Disco pequeño; principalmente epífito usando zarcillos apicales",
             "habitat": "Epífito sobre Sargassum, Gracilaria; también en sustratos duros; hasta 26 m",
             "clave_id": "Alambrado, con ramillas espinosas y ganchos apicales enroscados"
@@ -241,7 +194,7 @@ BASE_ALGAS_INICIAL = {
             "tamaño_cm": "Mechones hasta 20 cm; ramas 50–150 µm diám.",
             "segmentos": "Nudos verticilados con espinas (caducas), entrenudos con una capa de células corticantes rectangulares",
             "fijacion": "Disco de fijación discoidal",
-            "habitat": "Rocas, cuerdas, raíces de mangle; intermareal a 5 m",
+            "habitat": "Rocas, cuerdas, raíces de mangle; intermareal a 5m de profundidad",
             "clave_id": "Puntas en forma de pinza, bandas oscuras/claras en los segmentos"
         }
     },
@@ -255,7 +208,7 @@ BASE_ALGAS_INICIAL = {
             "ramillas": "Rígidas, en tres filas verticales → sección triangular, a menudo torcidas",
             "estructura": "7–9 células pericentrales, corticadas; ápices incurvados y bifurcados",
             "fijacion": "Disco de fijación",
-            "habitat": "Rocas expuestas; 4–20 m profundidad",
+            "habitat": "Rocas expuestas; 4–20m de profundidad",
             "clave_id": "Sección transversal triangular con tres hileras de ramillas"
         }
     },
@@ -264,10 +217,7 @@ BASE_ALGAS_INICIAL = {
         "familia": "Rhodomelaceae",
         "imagen": "Laurentia_obtusa.png",
         "caracteristicas": {
-            "talo": (
-                "Compacto, verde oscuro a oliva con puntas granate; "
-                "ramificación alterna, densa arriba"
-            ),
+            "talo": "Compacto, verde oscuro a oliva con puntas granate; ramificación alterna, densa arriba",
             "tamaño_cm": "8–15 (26) alto; ramas 0.7–1.8 mm diám. proximal",
             "ramillas": "Espiraladas, claviformes, 0.5–0.8 mm diám., con depresión terminal y filamentos finos",
             "especial": "Presencia de 'cuerpos en cereza' incoloros en fresco",
@@ -280,10 +230,7 @@ BASE_ALGAS_INICIAL = {
         "familia": "Rhodomelaceae",
         "imagen": "Laurentia_papillosa.png",
         "caracteristicas": {
-            "talo": (
-                "Gregario, cartilaginoso, verde purpúreo a marrón oliva; "
-                "ramificación alterna a irregular"
-            ),
+            "talo": "Gregario, cartilaginoso, verde purpúreo a marrón oliva; ramificación alterna a irregular",
             "tamaño_cm": "5–8 (20) alto; ramas 1–2 mm diám. abajo, cubiertas densamente por ramillas cortas verrucosas",
             "ramillas": "Resistentes, nudosas, claviformes, 0.5–2.5 mm largo, con depresión terminal",
             "estructura": "Médula 100–150 µm; corticales con paredes gruesas, conexiones de fovea",
@@ -294,7 +241,7 @@ BASE_ALGAS_INICIAL = {
     "Sargassum fluitans": {
         "clase": "Phaeophyceae",
         "familia": "Sargassaceae",
-        "imagen": "default.png",
+        "imagen": "Sargassum_fluitans.png",
         "caracteristicas": {
             "talo": "Pelágico, libre, arbustivo, pardo dorado; ejes lisos sin eje dominante",
             "tamaño_cm": "Hasta 1 m largo",
@@ -341,7 +288,7 @@ BASE_ALGAS_INICIAL = {
             "tamaño_cm": "Hasta 20 alto; ramas 1–2.5 mm ancho, 180–220 µm grosor",
             "estructura": "Una capa medular, células rectangulares; una capa cortical pequeña",
             "fijacion": "Disco fibroso en tapete; rizoides marginales comunes",
-            "habitat": "Aguas someras arenosas, fijado a rocas/conchas; hasta 3 m",
+            "habitat": "Aguas someras arenosas, fijado a rocas o conchas; hasta 3 m de profundidad",
             "clave_id": "Arbustivo marrón oliva, ramificación cervicorne aplanada"
         }
     },
@@ -350,10 +297,7 @@ BASE_ALGAS_INICIAL = {
         "familia": "Dictyotaceae",
         "imagen": "Dictyota_dichotoma.png",
         "caracteristicas": {
-            "talo": (
-                "Erecto, flexible, cintas, pardo-amarillento a verde oliva; "
-                "iridiscencia azul-verdosa en vivo"
-            ),
+            "talo": "Erecto, flexible, cintas, pardo-amarillento a verde oliva; iridiscencia azul-verdosa en vivo",
             "tamaño_cm": "10–25 alto; ramas 2–12 mm ancho, 100–150 µm grosor",
             "ramificacion": "Dicotómica regular, 15–45°; ápices obtusos, bífidos",
             "estructura": "Una capa medular (células gigantes visibles por transparencia); corticales pequeñas",
@@ -367,10 +311,7 @@ BASE_ALGAS_INICIAL = {
         "familia": "Dictyotaceae",
         "imagen": "Padina_sanctae_crucis.png",
         "caracteristicas": {
-            "talo": (
-                "Abanico, foliáceo, hasta 15 cm; cara superior blanco tiza con "
-                "bandas marrón claro, inferior no calcificada o ligeramente"
-            ),
+            "talo": "Abanico, foliáceo, hasta 15 cm; cara superior blanco tiza con bandas marrón claro, inferior no calcificada o ligeramente",
             "tamaño_cm": "Láminas hasta 9 (25) cm ancho",
             "estructura": "Dos capas celulares; márgenes involutos",
             "pelos": "Bandas concéntricas de pelos en ambas superficies, separadas 2–3 mm",

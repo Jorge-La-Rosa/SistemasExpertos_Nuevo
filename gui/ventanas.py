@@ -258,3 +258,69 @@ class VentanaNuevaEspecie:
             font=ctk.CTkFont(size=15, weight="bold"),
             command=guardar
         ).pack(fill="x", padx=25, pady=(10, 20))
+
+class VentanaGestionUsuarios:
+    """Ventana modal para administrar y eliminar usuarios registrados."""
+
+    @staticmethod
+    def abrir(master, gestor_usuarios):
+        modal = ctk.CTkToplevel(master)
+        modal.title("Gestión de Usuarios")
+        modal.geometry("400x450")
+        modal.transient(master)
+        modal.grab_set()
+
+        ctk.CTkLabel(
+            modal, 
+            text="Usuarios Registrados", 
+            font=ctk.CTkFont(size=18, weight="bold")
+        ).pack(pady=15)
+
+        lbl_info = ctk.CTkLabel(
+            modal, 
+            text=f"Total: {gestor_usuarios.total_usuarios()}/{gestor_usuarios.MAX_USUARIOS}",
+            text_color="#27AE60",
+            font=ctk.CTkFont(weight="bold")
+        )
+        lbl_info.pack(pady=(0, 10))
+
+        frame_lista = ctk.CTkScrollableFrame(modal, width=320, height=250)
+        frame_lista.pack(pady=10, padx=20)
+
+        def recargar_lista():
+            for w in frame_lista.winfo_children():
+                w.destroy()
+
+            lbl_info.configure(
+                text=f"Total: {gestor_usuarios.total_usuarios()}/{gestor_usuarios.MAX_USUARIOS}"
+            )
+
+            for usuario in gestor_usuarios.obtener_lista_usuarios():
+                item = ctk.CTkFrame(frame_lista, fg_color=("#EAEAEA", "#2B2B2B"))
+                item.pack(fill="x", pady=5, padx=5)
+
+                ctk.CTkLabel(
+                    item, text=f"👤 {usuario}", 
+                    font=ctk.CTkFont(weight="bold")
+                ).pack(side="left", padx=10)
+
+                def eliminar_click(u=usuario):
+                    if messagebox.askyesno("Confirmar", f"¿Eliminar al usuario '{u}'?"):
+                        exito, msj = gestor_usuarios.eliminar_usuario(u)
+                        if exito:
+                            messagebox.showinfo("Éxito", msj)
+                            recargar_lista()
+                        else:
+                            messagebox.showwarning("Atención", msj)
+
+                ctk.CTkButton(
+                    item, text="🗑️", width=35, height=30,
+                    fg_color="#C0392B", hover_color="#922B21",
+                    command=eliminar_click
+                ).pack(side="right", padx=5, pady=5)
+
+        recargar_lista()
+
+        ctk.CTkButton(
+            modal, text="Cerrar", fg_color="gray", command=modal.destroy
+        ).pack(pady=15)

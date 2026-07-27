@@ -4,7 +4,7 @@ import customtkinter as ctk
 from gui.utilidades import CacheImagenes
 from gui.componentes import TarjetaAlga
 from gui.identificador import IdentificadorAsistido
-from gui.ventanas import VentanaDetalle, VentanaNuevaEspecie
+from gui.ventanas import VentanaDetalle, VentanaNuevaEspecie, VentanaDetalle, VentanaNuevaEspecie, VentanaGestionUsuarios
 
 
 class AplicacionExpertaAlgas(ctk.CTk):
@@ -32,12 +32,8 @@ class AplicacionExpertaAlgas(ctk.CTk):
         self.crear_interfaz_principal()
 
         # Inicializar identificador
-        self.identificador = IdentificadorAsistido(
-            base_algas=self.base_algas,
-            render_callback=self.renderizar_pregunta_asistida,
-            abrir_detalle_callback=self.abrir_modal_detalle
-        )
-        self.renderizar_pregunta_asistida()
+        self.identificador = IdentificadorAsistido(base_algas=self.base_algas)
+        self.construir_identificador_cascada()
 
     def crear_interfaz_principal(self):
         """Crea la estructura de la ventana (navbar, columnas, galería)."""
@@ -57,6 +53,17 @@ class AplicacionExpertaAlgas(ctk.CTk):
             font=ctk.CTkFont(size=16, weight="bold")
         )
         lbl_logo.pack(side="left", padx=20, pady=10)
+
+        btn_usuarios = ctk.CTkButton(
+            self.navbar,
+            text="⚙️ Usuarios",
+            fg_color="#2980B9",
+            hover_color="#2471A3",
+            width=100,
+            font=ctk.CTkFont(weight="bold"),
+            command=lambda: VentanaGestionUsuarios.abrir(self, self.gestor_usr)
+        )
+        btn_usuarios.pack(side="right", padx=(0, 10), pady=10)
 
         btn_add = ctk.CTkButton(
             self.navbar,
@@ -115,56 +122,126 @@ class AplicacionExpertaAlgas(ctk.CTk):
         # Render inicial de la galería
         self.actualizar_galeria_tarjetas()
 
-    # ============================
-    # IDENTIFICADOR ASISTIDO
-    # ============================
+    # IDENTIFICADOR ASISTIDO EN CASCADA
 
-    def renderizar_pregunta_asistida(self):
-        """Refresca la UI de la pregunta actual."""
+    def construir_identificador_cascada(self):
+        """Construye la UI del cuestionario en cascada (Clase -> Familia -> Especie)."""
         # Limpiar contenedor
         for w in self.box_pregunta.winfo_children():
             w.destroy()
 
-        # Obtener texto de la pregunta
-        texto = self.identificador.obtener_pregunta()
+        # Variables de estado para los menús
+        self.var_clase = ctk.StringVar(value="Seleccione Clase")
+        self.var_familia = ctk.StringVar(value="Seleccione Familia")
+        self.var_especie = ctk.StringVar(value="Seleccione Clave")
+        self.diccionario_claves = {} # Para mapear la selección visual con el nombre real de la especie
 
-        # Mostrar pregunta
-        lbl_q = ctk.CTkLabel(
+        # --- 1. MENÚ CLASE ---
+        ctk.CTkLabel(
+            self.box_pregunta, 
+            text="1. Grupo o Clase:", 
+            font=ctk.CTkFont(weight="bold")
+        ).pack(pady=(25, 5), padx=20, anchor="w")
+
+        opciones_clase = self.identificador.obtener_clases()
+        self.cb_clase = ctk.CTkOptionMenu(
             self.box_pregunta,
-            text=texto,
-            font=ctk.CTkFont(size=15),
-            wraplength=280,
-            justify="center"
+            variable=self.var_clase,
+            values=opciones_clase,
+            command=self.al_seleccionar_clase
         )
-        lbl_q.pack(pady=40, padx=20, expand=True)
+        self.cb_clase.pack(fill="x", padx=20, pady=(0, 15))
 
-        # Botones
-        btn_frame = ctk.CTkFrame(self.box_pregunta, fg_color="transparent")
-        btn_frame.pack(fill="x", side="bottom", pady=20, padx=20)
+        # --- 2. MENÚ FAMILIA ---
+        ctk.CTkLabel(
+            self.box_pregunta, 
+            text="2. Familia Morfológica:", 
+            font=ctk.CTkFont(weight="bold")
+        ).pack(pady=(10, 5), padx=20, anchor="w")
 
-        ctk.CTkButton(
-            btn_frame,
-            text="Sí",
-            width=110,
-            fg_color="#2980B9",
-            hover_color="#2471A3",
-            font=ctk.CTkFont(weight="bold"),
-            command=self.identificador.respuesta_si
-        ).pack(side="left", padx=5)
+        self.cb_familia = ctk.CTkOptionMenu(
+            self.box_pregunta,
+            variable=self.var_familia,
+            values=["Esperando selección previa..."],
+            state="disabled", # Bloqueado inicialmente
+            command=self.al_seleccionar_familia
+        )
+        self.cb_familia.pack(fill="x", padx=20, pady=(0, 15))
 
-        ctk.CTkButton(
-            btn_frame,
-            text="No",
-            width=110,
-            fg_color="#C0392B",
-            hover_color="#922B21",
-            font=ctk.CTkFont(weight="bold"),
-            command=self.identificador.respuesta_no
-        ).pack(side="right", padx=5)
+        # --- 3. MENÚ CLAVE DICOTÓMICA ---
+        ctk.CTkLabel(
+            self.box_pregunta, 
+            text="3. Clave Dicotómica:", 
+            font=ctk.CTkFont(weight="bold")
+        ).pack(pady=(10, 5), padx=20, anchor="w")
 
-    # ============================
+        self.cb_especie = ctk.CTkOptionMenu(
+            self.box_pregunta,
+            variable=self.var_especie,
+            values=["Esperando selección previa..."],
+            state="disabled" # Bloqueado inicialmente
+        )
+        self.cb_especie.pack(fill="x", padx=20, pady=(0, 25))
+
+        # --- BOTÓN IDENTIFICAR ---
+        self.btn_identificar = ctk.CTkButton(
+            self.box_pregunta,
+            text="Ver Detalles del Alga",
+            height=40,
+            fg_color="#27AE60",
+            hover_color="#219653",
+            font=ctk.CTkFont(weight="bold", size=14),
+            state="disabled", # Bloqueado inicialmente
+            command=self.mostrar_resultado_identificacion
+        )
+        self.btn_identificar.pack(fill="x", padx=20, pady=(10, 20))
+
+
+    def al_seleccionar_clase(self, valor):
+        """Evento que se dispara al elegir una clase. Desbloquea las familias."""
+        familias = self.identificador.obtener_familias(valor)
+        
+        # Actualizar y desbloquear menú de familia
+        self.var_familia.set("Seleccione Familia")
+        self.cb_familia.configure(values=familias, state="normal")
+        
+        # Resetear y bloquear el menú inferior (por si el usuario retrocede)
+        self.var_especie.set("Esperando selección previa...")
+        self.cb_especie.configure(values=["Esperando selección previa..."], state="disabled")
+        self.btn_identificar.configure(state="disabled")
+
+
+    def al_seleccionar_familia(self, valor):
+        """Evento que se dispara al elegir una familia. Desbloquea las claves."""
+        especies_claves = self.identificador.obtener_especies_por_claves(self.var_clase.get(), valor)
+        
+        opciones_claves = []
+        self.diccionario_claves.clear()
+        
+        for especie, clave in especies_claves:
+            # Creamos un texto descriptivo para que el usuario lea la clave
+            texto_opcion = f"Clave: {clave}"
+            # Acortamos el texto si es muy largo para que no deforme el menú
+            texto_mostrar = texto_opcion[:65] + "..." if len(texto_opcion) > 65 else texto_opcion
+            
+            opciones_claves.append(texto_mostrar)
+            # Guardamos la relación entre el texto visual y el nombre real de la especie
+            self.diccionario_claves[texto_mostrar] = especie
+
+        # Actualizar y desbloquear clave y botón final
+        self.var_especie.set("Seleccione Clave")
+        self.cb_especie.configure(values=opciones_claves, state="normal")
+        self.btn_identificar.configure(state="normal")
+
+
+    def mostrar_resultado_identificacion(self):
+        """Obtiene la especie seleccionada y abre su ventana modal."""
+        seleccion = self.var_especie.get()
+        if seleccion in self.diccionario_claves:
+            nombre_especie = self.diccionario_claves[seleccion]
+            self.abrir_modal_detalle(nombre_especie)
+
     # GALERÍA
-    # ============================
 
     def actualizar_galeria_tarjetas(self):
         """Construye la galería de tarjetas a partir de los datos actuales."""
@@ -228,5 +305,4 @@ class AplicacionExpertaAlgas(ctk.CTk):
         self.base_algas = self.gestor.obtener_todas()
         self.actualizar_galeria_tarjetas()
         self.identificador.base_algas = self.base_algas
-        self.identificador.resetear()
-        self.renderizar_pregunta_asistida()
+        self.construir_identificador_cascada()
